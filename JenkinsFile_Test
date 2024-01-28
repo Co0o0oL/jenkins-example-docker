@@ -1,0 +1,26 @@
+pipeline {
+    agent none
+    stages {
+        stage('Maven') {
+            agent {
+                dockerfile {  
+                    filename 'MavenDockerfile'
+                }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        
+        stage('Java') {
+            agent {
+                dockerfile {  
+                    filename 'JavaDockerfile'
+                }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
